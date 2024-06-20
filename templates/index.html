@@ -12,7 +12,7 @@
     <div id="response"></div>
     <script>
         document.getElementById('upload-form').onsubmit = function(event) {
-            event.preventDefault(); // Prevent default form submission
+            event.preventDefault();
 
             const formData = new FormData();
             const fileField = document.querySelector('input[type="file"]');
@@ -28,7 +28,7 @@
                 document.getElementById('response').innerText = data.message;
                 if (data.success) {
                     localStorage.setItem('extractedText', data.text);
-                    window.location.href = "/qa";  // Redirect to the QA page after successful upload
+                    window.location.href = "/qa";  
                 }
             })
             .catch(error => {
