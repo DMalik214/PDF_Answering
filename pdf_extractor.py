@@ -8,7 +8,7 @@ def extract_text_from_pdf(pdf_path):
     text = ""
     for page_num in range(doc.page_count):
         page = doc.load_page(page_num)
-        text += page.get_text("text")  # Ensure the text format is handled properly
+        text += page.get_text("text")  
     return text
 
 def get_relevant_context(text, question, top_n=3):
