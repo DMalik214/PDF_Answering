@@ -23,7 +23,7 @@ def get_relevant_context(text, question, top_n=3):
     return ' '.join(relevant_sentences)
 
 if __name__ == "__main__":
-    pdf_path = "sample.pdf"  # Replace with your PDF file path
+    pdf_path = "sample.pdf"  
     text = extract_text_from_pdf(pdf_path)
     question = "What is the main topic?"
     context = get_relevant_context(text, question)
