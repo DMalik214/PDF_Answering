@@ -1,0 +1,40 @@
+<!doctype html>
+<html>
+<head>
+    <title>PDF Answering AI</title>
+</head>
+<body>
+    <h1>Upload a PDF</h1>
+    <form id="upload-form" action="/upload" method="post" enctype="multipart/form-data">
+        <input type="file" name="file" accept=".pdf">
+        <button type="submit">Upload</button>
+    </form>
+    <div id="response"></div>
+    <script>
+        document.getElementById('upload-form').onsubmit = function(event) {
+            event.preventDefault(); // Prevent default form submission
+
+            const formData = new FormData();
+            const fileField = document.querySelector('input[type="file"]');
+
+            formData.append('file', fileField.files[0]);
+
+            fetch('/upload', {
+                method: 'POST',
+                body: formData
+            })
+            .then(response => response.json())
+            .then(data => {
+                document.getElementById('response').innerText = data.message;
+                if (data.success) {
+                    localStorage.setItem('extractedText', data.text);
+                    window.location.href = "/qa";  // Redirect to the QA page after successful upload
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+            });
+        };
+    </script>
+</body>
+</html>

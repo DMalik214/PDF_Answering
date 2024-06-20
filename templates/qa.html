@@ -1,0 +1,35 @@
+<!doctype html>
+<html>
+<head>
+    <title>PDF Answering AI</title>
+</head>
+<body>
+    <h1>Ask a Question</h1>
+    <form id="qa-form" onsubmit="return false;">
+        <input type="text" id="question" placeholder="Enter your question">
+        <button type="button" onclick="askQuestion()">Ask</button>
+    </form>
+    <div id="answer"></div>
+    <script>
+        function askQuestion() {
+            const question = document.getElementById('question').value;
+            const context = localStorage.getItem('extractedText');  // Get the extracted text from localStorage
+
+            fetch('/answer', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ context: context, question: question }),
+            })
+            .then(response => response.json())
+            .then(data => {
+                document.getElementById('answer').innerText = data.answer;
+            })
+            .catch(error => {
+                console.error('Error:', error);
+            });
+        }
+    </script>
+</body>
+</html>
