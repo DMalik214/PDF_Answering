@@ -13,7 +13,7 @@
     <script>
         function askQuestion() {
             const question = document.getElementById('question').value;
-            const context = localStorage.getItem('extractedText');  // Get the extracted text from localStorage
+            const context = localStorage.getItem('extractedText');  
 
             fetch('/answer', {
                 method: 'POST',
