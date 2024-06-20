@@ -5,12 +5,10 @@ from qa_model import load_glove_embeddings, find_most_similar_sentence
 
 app = Flask(__name__)
 
-# Ensure the 'uploads' directory exists
 UPLOAD_FOLDER = 'uploads'
 if not os.path.exists(UPLOAD_FOLDER):
     os.makedirs(UPLOAD_FOLDER)
 
-# Load GloVe embeddings
 embeddings_path = 'glove.6B.100d.txt'
 glove_embeddings = load_glove_embeddings(embeddings_path)
 
